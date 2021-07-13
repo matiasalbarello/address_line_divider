@@ -19,13 +19,23 @@ Or install it yourself as:
     $ gem install address_line_divider
 
 ## Usage
+The implementation is rather simple: you can provide a path to a file where the not-so-obvious street names are. Then, when trying to divide an address line, the algorithm will check if the given input can be found in the file. If not, it will try to parse it using a Regex.
 
-The implementation is rather simple: you can provide a path to a file where the not-so-obvious street names are. Then, when trying to divide an address line, the algorithm will check if the given input can be parsed using a Regex. If it's not possible, it will proceed as follow:
+If any match, it returns an array: `[street, street_no]`. If no match, it returns `nil`.
+### Configuration
+This app uses a plain text file containing street names. If no file path is provided, it will just use the implemented Regex (may not work for all cases).
+The path to the file is set using a configuration object as follow:
+```ruby
+AddressLineDivider.configure do |config|
+    config.streets_file_path = "path/to/file"
+end
+```
 
-1. Normalize the address line (remove extra white spaces, and [configurable rules for replacement](#configurable-rules-for-pre-processing))
-1. Try to match with the given street names in the source file. If any match, it returns an array: `[street, street_no]`. If no match, it returns `nil`.
-
-## Configurable Rules for pre-processing
+### Where to get a file with street names
+Depending on your location, there are different providers of street names. This gem does not implement (yet) any mechanism to get nor to normalize them.
+Some good providers:
+- [OpenStreetMap.org](https://download.geofabrik.de/). For Germany, also see: https://www.zeit.de/interactive/strassennamen/
+- https://www.dhl-geschaeftskundenportal.de/ (Paid and only for Germany)
 
 ## Development
 
