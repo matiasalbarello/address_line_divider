@@ -7,11 +7,11 @@ Gem::Specification.new do |spec|
   spec.version       = AddressLineDivider::VERSION
   spec.authors       = ["Matias Albarello"]
   spec.email         = ["matias.albarello@gmail.com"]
-  spec.licenses      = ['MIT']
+  spec.licenses      = ["MIT"]
 
   spec.summary       = "Divide an address line into street and street number based on a Streets file."
   spec.homepage      = "https://github.com/matiasalbarello/address_line_divider"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage

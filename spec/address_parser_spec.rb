@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-include AddressLineDivider
-
-RSpec.describe AddressParser do
+RSpec.describe AddressLineDivider::AddressParser do
   let(:parser) { described_class.new }
 
   describe "parse using regex" do
     it "divide into street and street_no" do
       allow(parser).to receive(:search_street_on_file).and_return(false)
-      expect(parser.parse("test 123")).to eq ["test", "123"]
+      expect(parser.parse("test 123")).to eq %w[test 123]
     end
   end
 
@@ -28,7 +26,7 @@ RSpec.describe AddressParser do
       expect(parser.parse("1st street 123")).to eq ["1st street", "123"]
       expect(parser.parse("Street 2 with number 123a")).to eq ["Street 2 with number", "123a"]
       expect(parser.parse("Test Street 123/124")).to eq ["Test Street", "123/124"]
-      expect(parser.parse("Street 123")).to eq ["Street", "123"]
+      expect(parser.parse("Street 123")).to eq %w[Street 123]
     end
 
     it "uses the regex if the street is not found in the file" do

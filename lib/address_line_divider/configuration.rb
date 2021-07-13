@@ -10,6 +10,7 @@ module AddressLineDivider
         return if path.nil?
 
         raise FileNotFound, "Couldn't find a file with the path `#{path}`." unless File.exist? path
+
         @streets_file_path = path
       end
     end
