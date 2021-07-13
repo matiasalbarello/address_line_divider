@@ -3,14 +3,15 @@
 module AddressLineDivider
   class Configuration
     class FileNotFound < StandardError; end
+    class << self
+      attr_reader :streets_file_path
 
-    attr_reader :streets_file_path
+      def streets_file_path=(path)
+        return if path.nil?
 
-    def streets_file_path=(path)
-      return if path.nil?
-
-      raise FileNotFound, "Couldn't find a file with the path `#{path}`." unless File.exist? path
-      @streets_file_path = path
+        raise FileNotFound, "Couldn't find a file with the path `#{path}`." unless File.exist? path
+        @streets_file_path = path
+      end
     end
   end
 end

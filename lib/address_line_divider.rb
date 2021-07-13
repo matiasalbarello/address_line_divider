@@ -9,7 +9,7 @@ module AddressLineDivider
 
   class << self
     def configuration
-      @configuration ||= Configuration.new
+      @configuration ||= Configuration
     end
 
     def configure
