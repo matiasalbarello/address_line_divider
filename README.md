@@ -1,3 +1,4 @@
+[![Ruby](https://github.com/matiasalbarello/address_line_divider/actions/workflows/main.yml/badge.svg)](https://github.com/matiasalbarello/address_line_divider/actions/workflows/main.yml)
 # AddressLineDivider
 
 The purpose of this GEM is to provide a tool to correctly parse address lines into Street + Street Number. Sometimes it's trivial and it can be solved with a regular expression, but when the street itself contains numbers, the task needs some extra considerations.

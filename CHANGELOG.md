@@ -1,5 +1,8 @@
 # Changelog
 
+## V1.0.3
+  *  Small fixes
+  *  CI Status badge
 ## V1.0.2
   *  Add MIT LICENSE
 ## V1.0.0
