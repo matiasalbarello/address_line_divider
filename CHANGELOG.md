@@ -1,6 +1,6 @@
 # Changelog
 
-## V1.0.1
+## V1.0.2
   *  Add MIT LICENSE
 ## V1.0.0
 ###  Initial version
