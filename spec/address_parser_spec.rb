@@ -23,10 +23,12 @@ RSpec.describe AddressLineDivider::AddressParser do
       # Street 2 with number
       # Test Street
       # Street
+      allow(parser).to receive(:parse_using_regex).and_call_original
       expect(parser.parse("1st street 123")).to eq ["1st street", "123"]
       expect(parser.parse("Street 2 with number 123a")).to eq ["Street 2 with number", "123a"]
       expect(parser.parse("Test Street 123/124")).to eq ["Test Street", "123/124"]
       expect(parser.parse("Street 123")).to eq %w[Street 123]
+      expect(parser).not_to have_received(:parse_using_regex)
     end
 
     it "uses the regex if the street is not found in the file" do

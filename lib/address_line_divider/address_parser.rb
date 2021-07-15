@@ -16,8 +16,21 @@ module AddressLineDivider
     private
 
     def parse_using_regex(address_line)
-      /^(?<street>\D+) (?<street_no>.*)/ =~ address_line
-      [street, street_no]
+      last_number_index = address_line.index(last_number(address_line))
+      street_name = address_line[0..last_number_index-1].strip
+      street_no = address_line[last_number_index..-1].strip
+
+      [street_name, street_no]
+    end
+
+    def last_number(address_line)
+      squish(address_line).split(" ").select do |substr|
+        substr =~ /[[:digit:]]/
+      end.last
+    end
+
+    def squish(string)
+      string.gsub("  "," ").strip
     end
 
     def search_street_on_file(address_line)
