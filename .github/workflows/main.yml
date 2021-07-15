@@ -19,8 +19,9 @@ jobs:
     - name: Log
       run: |
         echo "GITHUB_REF: $GITHUB_REF"
-        echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
-        echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
+        echo "GITHUB_HEAD_REF: ${{ github.head_ref }}"
+        echo "GITHUB_BASE_REF: ${{ github.base_ref }}"
+        echo "github.event.pull_request.merged: ${{ github.event.pull_request.merged }}"
 
   cd:
     runs-on: ubuntu-latest
