@@ -9,12 +9,12 @@ workflow_run:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
 
       - name: Release Gem
-        if: contains(github.ref, 'refs/tags/v')
+        if: contains(github.head_ref, 'release/v')
         uses: cadwallion/publish-rubygems-action@master
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
