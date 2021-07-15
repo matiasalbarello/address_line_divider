@@ -1,11 +1,12 @@
 # Changelog
-
-## V1.0.3
+## v1.0.4
+  *  Improve Regex
+## v1.0.3
   *  Small fixes
   *  CI Status badge
-## V1.0.2
+## v1.0.2
   *  Add MIT LICENSE
-## V1.0.0
+## v1.0.0
 ###  Initial version
 #### Features
   *  Parse address lines using a Regex
