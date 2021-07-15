@@ -1,0 +1,31 @@
+name: CD
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log
+        run: |
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "github.head_ref: ${{ github.head_ref }}"
+          echo "github.base_ref: ${{ github.base_ref }}"
+          echo "contains(github.head_ref, 'release/v'): ${{ contains(github.head_ref, 'release/v') }}"
+          echo "github.base_ref == 'master': ${{ github.base_ref == 'master' }}"
+          echo "github.event.pull_request.merged: ${{ github.event.pull_request.merged }}"
+  cd:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.head_ref, 'release/v') && github.base_ref == 'master' && github.event.pull_request.merged == true }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Release Gem
+        uses: cadwallion/publish-rubygems-action@master
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
+          RELEASE_COMMAND: rake release
+
