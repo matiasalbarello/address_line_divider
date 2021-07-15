@@ -17,7 +17,7 @@ module AddressLineDivider
 
     def parse_using_regex(address_line)
       last_number_index = address_line.index(last_number(address_line))
-      street_name = address_line[0..last_number_index-1].strip
+      street_name = address_line[0..last_number_index - 1].strip
       street_no = address_line[last_number_index..-1].strip
 
       [street_name, street_no]
@@ -30,7 +30,7 @@ module AddressLineDivider
     end
 
     def squish(string)
-      string.gsub("  "," ").strip
+      string.gsub("  ", " ").strip
     end
 
     def search_street_on_file(address_line)
