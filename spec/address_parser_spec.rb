@@ -38,4 +38,9 @@ RSpec.describe AddressLineDivider::AddressParser do
       expect(parser).to have_received(:parse_using_regex)
     end
   end
+
+  it "returns nil if it can't parse it" do
+    expect(parser.parse("test")).to be nil
+    expect(parser.parse("123")).to be nil
+  end
 end
