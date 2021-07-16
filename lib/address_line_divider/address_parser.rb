@@ -10,17 +10,27 @@ module AddressLineDivider
       street = search_street_on_file(address_line)
       return [street, street_no(address_line, street)] if street
 
-      parse_using_regex(address_line)
+      result = parse_using_regex(address_line)
+      result unless result.nil? || result.any?(:nil?)
     end
 
     private
 
     def parse_using_regex(address_line)
-      last_number_index = address_line.index(last_number(address_line))
+      last_number = last_number(address_line)
+      return unless last_number
+
+      last_number_index = address_line.index(last_number)
       street_name = address_line[0..last_number_index - 1].strip
       street_no = address_line[last_number_index..-1].strip
 
+      return if invalid_result(address_line, [street_name, street_no])
+
       [street_name, street_no]
+    end
+
+    def invalid_result(address_line, result)
+      squish(result.join(" ")) != squish(address_line)
     end
 
     def last_number(address_line)
