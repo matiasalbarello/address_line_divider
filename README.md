@@ -25,6 +25,24 @@ Or install it yourself as:
 The implementation is rather simple: you can provide a path to a file where the not-so-obvious street names are. Then, when trying to divide an address line, the algorithm will check if the given input can be found in the file. If not, it will try to parse it using a Regex.
 
 If any match, it returns an array: `[street, street_no]`. If no match, it returns `nil`.
+
+Examples:
+
+```ruby
+parser = AddressLineDivider::AddressParser.new
+parser.parse("Platz des 21 September 123a/2/3")
+# => ["Platz des 21 September", "123a/2/3"]
+
+parser.parse("street name only")
+# => nil
+
+parser.parse("123") # number only
+# => nil
+
+# if "Platz des 21 September" is in the file of known streets:
+parser.parse("Platz des 21 September") # without a street number
+# => nil
+```
 ### Configuration
 This app uses a plain text file containing street names. If no file path is provided, it will just use the implemented Regex (may not work for all cases).
 The path to the file is set using a configuration object as follow:
