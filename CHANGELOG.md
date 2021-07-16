@@ -1,4 +1,6 @@
 # Changelog
+## v1.0.6
+  *  Improve verifying results.
 ## v1.0.5
   *  Verify results and return nil if it's invalid.
 ## v1.0.4
