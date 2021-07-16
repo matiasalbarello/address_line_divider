@@ -24,6 +24,7 @@ RSpec.describe AddressLineDivider::AddressParser do
       # Test Street
       # Street
       allow(parser).to receive(:parse_using_regex).and_call_original
+
       expect(parser.parse("1st street 123")).to eq ["1st street", "123"]
       expect(parser.parse("Street 2 with number 123a")).to eq ["Street 2 with number", "123a"]
       expect(parser.parse("Test Street 123/124")).to eq ["Test Street", "123/124"]
@@ -36,6 +37,10 @@ RSpec.describe AddressLineDivider::AddressParser do
       parser.parse("Not found street 123")
 
       expect(parser).to have_received(:parse_using_regex)
+    end
+
+    it "returns nil if it can't parse it" do
+      expect(parser.parse("Street 2 with number")).to be nil
     end
   end
 
