@@ -12,6 +12,7 @@ module AddressLineDivider
       result ||= parse_using_regex(address_line)
 
       return if invalid_result(address_line, result)
+
       result
     end
 
@@ -30,8 +31,8 @@ module AddressLineDivider
 
     def invalid_result(address_line, result)
       result.nil? ||
-      result.any? {|r| r.nil? || r.strip.empty? } ||
-      squish(result.join(" ")) != squish(address_line)
+        result.any? { |r| r.nil? || r.strip.empty? } ||
+        squish(result.join(" ")) != squish(address_line)
     end
 
     def last_number(address_line)
