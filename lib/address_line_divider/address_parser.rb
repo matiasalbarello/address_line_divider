@@ -24,7 +24,13 @@ module AddressLineDivider
       street_name = address_line[0..last_number_index - 1].strip
       street_no = address_line[last_number_index..-1].strip
 
+      return if invalid_result(address_line, [street_name, street_no])
+
       [street_name, street_no]
+    end
+
+    def invalid_result(address_line, result)
+      squish(result.join(" ")) != squish(address_line)
     end
 
     def last_number(address_line)
